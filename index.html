@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Pastas y Ñoquis | ¿Cuántos gramos por persona?</title>
+    <meta name="description" content="Calculadora de porciones de pastas, fideos secos, pasta fresca y ñoquis del 29 por persona. Calculá gramos de pasta, salsa pomodoro, queso rallado y sal para hervir.">
+    <meta name="keywords" content="cuantos gramos de fideos por persona, calculadora de pasta, cuantos ñoquis por persona, ñoquis del 29 porciones, calculadora ravioles sorrentinos">
+    <link rel="canonical" href="https://sebiglesias.com.ar/pastas-caseras/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Pastas y Ñoquis | Gramos y porciones exactas">
+    <meta property="og:description" content="¿Hacés pastas o ñoquis del 29? Calculá gramos de pasta seca, fresca, rellena, salsa y queso rallado según los invitados.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sebiglesias.com.ar/pastas-caseras/">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BNDBQP0W7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2BNDBQP0W7');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3381238987477190" crossorigin="anonymous"></script>
+
+    <!-- Schema.org WebApplication & FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Calculadora de Pastas y Ñoquis",
+          "url": "https://sebiglesias.com.ar/pastas-caseras/",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "Calculadora de porciones para pastas secas, pastas frescas, ravioles, sorrentinos y ñoquis."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuántos gramos de pasta seca se calculan por persona?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La porción estándar de pasta seca (spaghetti, tirabuzones, penne) es de 80 a 100 gramos en crudo por adulto. Como la pasta seca absorbe agua y duplica su peso, 100g crudos rinden unos 200g a 220g de pasta cocida."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuántos gramos de ñoquis se calculan para los ñoquis del 29?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Se calculan entre 220 y 250 gramos de ñoquis frescos en crudo por adulto comensal (alrededor de 1 kg cada 4 a 5 personas)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="bg-amber-50/40 text-stone-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-amber-200/70 sticky top-0 z-20">
+        <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">🍝</span>
+                <div>
+                    <h1 class="text-lg font-bold text-stone-900 leading-tight">Calculadora de Pastas y Ñoquis</h1>
+                    <p class="text-xs text-stone-500">Porciones en crudo, salsa y queso rallado</p>
+                </div>
+            </div>
+            <a href="https://sebiglesias.com.ar" class="text-xs font-medium text-red-600 hover:text-red-700 bg-red-50 px-2.5 py-1 rounded-full border border-red-200">
+                ← Más microapps
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-4 py-6 w-full flex-grow space-y-6">
+
+        <!-- Calculator Card (Above The Fold) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-stone-200 p-5 md:p-6 space-y-5">
+            
+            <!-- Tipo de pasta -->
+            <div>
+                <label class="block text-sm font-semibold text-stone-900 mb-2">1. Seleccioná el tipo de pasta:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <button type="button" onclick="setPasta('seca')" id="btn-seca" class="pasta-btn p-3 rounded-xl border-2 text-center transition border-red-500 bg-red-50/60 font-semibold text-xs text-stone-900">
+                        <div class="text-xl mb-1">🍝</div>
+                        <div>Pasta Seca</div>
+                        <div class="text-[10px] text-stone-500 font-normal">Spaghetti, penne (100g)</div>
+                    </button>
+                    <button type="button" onclick="setPasta('fresca')" id="btn-fresca" class="pasta-btn p-3 rounded-xl border border-stone-200 text-center transition hover:border-stone-300 font-semibold text-xs text-stone-900">
+                        <div class="text-xl mb-1">🍜</div>
+                        <div>Pasta Fresca</div>
+                        <div class="text-[10px] text-stone-500 font-normal">Tallarines al huevo (140g)</div>
+                    </button>
+                    <button type="button" onclick="setPasta('noquis')" id="btn-noquis" class="pasta-btn p-3 rounded-xl border border-stone-200 text-center transition hover:border-stone-300 font-semibold text-xs text-stone-900">
+                        <div class="text-xl mb-1">🥔</div>
+                        <div>Ñoquis del 29</div>
+                        <div class="text-[10px] text-stone-500 font-normal">Papa / ricota (240g)</div>
+                    </button>
+                    <button type="button" onclick="setPasta('rellena')" id="btn-rellena" class="pasta-btn p-3 rounded-xl border border-stone-200 text-center transition hover:border-stone-300 font-semibold text-xs text-stone-900">
+                        <div class="text-xl mb-1">🥟</div>
+                        <div>Rellenas</div>
+                        <div class="text-[10px] text-stone-500 font-normal">Ravioles / Sorrentinos</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cantidad de personas -->
+            <div>
+                <label class="block text-sm font-semibold text-stone-900 mb-2">2. Comensales:</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-stone-50 p-3 rounded-xl border border-stone-200 text-center">
+                        <div class="text-xs text-stone-600 mb-1">Adultos</div>
+                        <div class="text-2xl font-bold text-stone-900 mb-2" id="val-adultos">6</div>
+                        <div class="flex justify-center items-center gap-3">
+                            <button onclick="adjust('adultos', -1)" class="w-9 h-9 rounded-full bg-white border border-stone-300 font-bold text-stone-700 hover:bg-stone-100 text-lg flex items-center justify-center">-</button>
+                            <button onclick="adjust('adultos', 1)" class="w-9 h-9 rounded-full bg-red-600 text-white font-bold hover:bg-red-700 text-lg flex items-center justify-center">+</button>
+                        </div>
+                    </div>
+                    <div class="bg-stone-50 p-3 rounded-xl border border-stone-200 text-center">
+                        <div class="text-xs text-stone-600 mb-1">Niños (mitad de porción)</div>
+                        <div class="text-2xl font-bold text-stone-900 mb-2" id="val-ninos">2</div>
+                        <div class="flex justify-center items-center gap-3">
+                            <button onclick="adjust('ninos', -1)" class="w-9 h-9 rounded-full bg-white border border-stone-300 font-bold text-stone-700 hover:bg-stone-100 text-lg flex items-center justify-center">-</button>
+                            <button onclick="adjust('ninos', 1)" class="w-9 h-9 rounded-full bg-red-600 text-white font-bold hover:bg-red-700 text-lg flex items-center justify-center">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tipo de Salsa -->
+            <div>
+                <label class="block text-sm font-semibold text-stone-900 mb-2">3. Salsa principal:</label>
+                <select id="sel-salsa" onchange="calc()" class="w-full p-2.5 rounded-xl border border-stone-300 bg-white text-sm text-stone-800 font-medium focus:ring-2 focus:ring-red-500">
+                    <option value="pomodoro">🍅 Pomodoro / Filetto clásico (tomate y albahaca)</option>
+                    <option value="bolognesa" selected>🥩 Tuco con carne / Boloñesa</option>
+                    <option value="crema">🧀 Cuatro Quesos / Crema</option>
+                    <option value="pesto">🌿 Pesto genovés (albahaca, nueces y oliva)</option>
+                </select>
+            </div>
+
+            <!-- Resultados -->
+            <div class="bg-gradient-to-br from-red-600 to-rose-700 rounded-xl p-5 text-white shadow-sm space-y-4">
+                <div class="flex items-center justify-between border-b border-red-400/40 pb-3">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-red-100">Cálculo de Ingredientes</span>
+                    <span class="text-xs font-bold bg-white/20 px-2.5 py-0.5 rounded-full" id="txt-platos">7 porciones</span>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <div class="bg-white/10 rounded-lg p-2.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="res-pasta">700 g</div>
+                        <div class="text-xs text-red-100 mt-0.5" id="lbl-pasta-tipo">Pasta cruda</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-2.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="res-salsa">2 latas</div>
+                        <div class="text-xs text-red-100 mt-0.5" id="lbl-salsa-desc">Tomate perita (~800g)</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-2.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="res-queso">175 g</div>
+                        <div class="text-xs text-red-100 mt-0.5">Queso Reggianito</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-2.5">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="res-agua">7 L</div>
+                        <div class="text-xs text-red-100 mt-0.5">Agua + 70g sal gruesa</div>
+                    </div>
+                </div>
+
+                <div id="box-bolognesa" class="bg-black/15 rounded-lg p-2.5 text-xs text-red-100 text-center">
+                    🥩 Para el tuco boloñesa sumá: <span class="font-bold text-white" id="res-carne-picada">450g de carne picada</span> y <span class="font-bold text-white" id="res-cebolla">2 cebollas medianas</span>.
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="pt-2 flex flex-col sm:flex-row gap-2">
+                    <button onclick="shareWhatsApp()" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-semibold rounded-lg text-sm flex items-center justify-center gap-2 transition shadow-sm">
+                        <span>📲</span> Enviar lista por WhatsApp
+                    </button>
+                    <button onclick="copyList()" id="btn-copy" class="w-full sm:w-auto py-2.5 px-4 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg text-sm transition">
+                        Copiar lista
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Anuncio AdSense Reservado -->
+        <div class="w-full min-h-[100px] flex items-center justify-center bg-stone-50 border border-dashed border-stone-300 rounded-xl text-stone-400 text-xs">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3381238987477190"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- Regla de oro italiana (SEO & E-E-A-T) -->
+        <section class="bg-white rounded-2xl border border-stone-200 p-6 space-y-4 text-stone-700 text-sm">
+            <h2 class="text-lg font-bold text-stone-900">La regla del 10 - 100 - 1000 para hervir pasta</h2>
+            <p class="text-stone-600">
+                La fórmula clásica italiana para cocinar pasta perfecta sin que se pegue ni quede apelmazada es:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+                <div class="bg-amber-50 rounded-xl p-3 border border-amber-200">
+                    <div class="text-xl font-bold text-amber-800">10 gramos</div>
+                    <div class="text-xs text-stone-600 mt-1">de sal gruesa</div>
+                </div>
+                <div class="bg-amber-50 rounded-xl p-3 border border-amber-200">
+                    <div class="text-xl font-bold text-amber-800">100 gramos</div>
+                    <div class="text-xs text-stone-600 mt-1">de pasta</div>
+                </div>
+                <div class="bg-amber-50 rounded-xl p-3 border border-amber-200">
+                    <div class="text-xl font-bold text-amber-800">1.000 ml (1 L)</div>
+                    <div class="text-xs text-stone-600 mt-1">de agua hirviendo</div>
+                </div>
+            </div>
+            <p class="text-xs text-stone-500">
+                <em>Consejo de abuela:</em> Nunca agregues aceite al agua de cocción. El aceite forma una película sobre la pasta que impide que la salsa se adhiera correctamente. La sal se agrega recién cuando el agua rompe el hervor.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-stone-200 py-6 text-center text-xs text-stone-500">
+        <p>Herramienta gratuita creada por <a href="https://sebiglesias.com.ar" class="text-stone-800 font-semibold hover:underline">Sebastián Iglesias</a> · ¡Que disfrutes tus pastas del domingo!</p>
+    </footer>
+
+    <!-- Script de cálculo -->
+    <script>
+        let currentPasta = 'seca'; // 'seca', 'fresca', 'noquis', 'rellena'
+        let adultos = 6;
+        let ninos = 2;
+
+        const gramsPerPerson = {
+            seca: 100,
+            fresca: 140,
+            noquis: 240,
+            rellena: 190
+        };
+
+        function setPasta(p) {
+            currentPasta = p;
+            ['seca', 'fresca', 'noquis', 'rellena'].forEach(k => {
+                const btn = document.getElementById('btn-' + k);
+                if (k === p) {
+                    btn.className = "pasta-btn p-3 rounded-xl border-2 text-center transition border-red-500 bg-red-50/60 font-semibold text-xs text-stone-900";
+                } else {
+                    btn.className = "pasta-btn p-3 rounded-xl border border-stone-200 text-center transition hover:border-stone-300 font-semibold text-xs text-stone-900";
+                }
+            });
+            calc();
+        }
+
+        function adjust(type, delta) {
+            if (type === 'adultos') adultos = Math.max(0, adultos + delta);
+            if (type === 'ninos') ninos = Math.max(0, ninos + delta);
+            document.getElementById('val-adultos').textContent = adultos;
+            document.getElementById('val-ninos').textContent = ninos;
+            calc();
+        }
+
+        function calc() {
+            const equivPlatos = adultos + (ninos * 0.5);
+            document.getElementById('txt-platos').textContent = `${equivPlatos} porciones (${adultos} ad. + ${ninos} niños)`;
+
+            if (equivPlatos === 0) {
+                document.getElementById('res-pasta').textContent = '0 g';
+                document.getElementById('res-salsa').textContent = '0';
+                document.getElementById('res-queso').textContent = '0 g';
+                document.getElementById('res-agua').textContent = '0 L';
+                return;
+            }
+
+            const totalGramos = Math.round(equivPlatos * gramsPerPerson[currentPasta]);
+            const pastaStr = totalGramos >= 1000 ? `${(totalGramos/1000).toFixed(2)} kg` : `${totalGramos} g`;
+            document.getElementById('res-pasta').textContent = pastaStr;
+
+            if (currentPasta === 'rellena') {
+                const units = Math.round(equivPlatos * 7.5);
+                document.getElementById('lbl-pasta-tipo').textContent = `~${units} sorrentinos / ${Math.round(equivPlatos * 16)} ravioles`;
+            } else {
+                document.getElementById('lbl-pasta-tipo').textContent = `Pasta cruda (${currentPasta})`;
+            }
+
+            // Queso: 25g por plato
+            const quesoG = Math.round(equivPlatos * 25);
+            document.getElementById('res-queso').textContent = `${quesoG} g`;
+
+            // Agua y sal
+            const litrosAgua = Math.max(2, Math.ceil(totalGramos / 100));
+            document.getElementById('res-agua').textContent = `${litrosAgua} L`;
+
+            // Salsa
+            const salsa = document.getElementById('sel-salsa').value;
+            const boxBolo = document.getElementById('box-bolognesa');
+
+            if (salsa === 'bolognesa') {
+                boxBolo.classList.remove('hidden');
+                const latas = Math.ceil(equivPlatos * 0.35);
+                document.getElementById('res-salsa').textContent = `${latas} latas`;
+                document.getElementById('lbl-salsa-desc').textContent = `Tomate perita (${latas * 400}g)`;
+                const carne = Math.round(equivPlatos * 75);
+                const cebollas = Math.max(1, Math.round(equivPlatos * 0.3));
+                document.getElementById('res-carne-picada').textContent = `${carne}g carne picada`;
+                document.getElementById('res-cebolla').textContent = `${cebollas} cebollas`;
+            } else if (salsa === 'pomodoro') {
+                boxBolo.classList.add('hidden');
+                const latas = Math.ceil(equivPlatos * 0.4);
+                document.getElementById('res-salsa').textContent = `${latas} latas`;
+                document.getElementById('lbl-salsa-desc').textContent = `Tomate perita + albahaca`;
+            } else if (salsa === 'crema') {
+                boxBolo.classList.add('hidden');
+                const cremaMl = Math.round(equivPlatos * 90);
+                document.getElementById('res-salsa').textContent = `${cremaMl} ml`;
+                document.getElementById('lbl-salsa-desc').textContent = `Crema de leche / 4 quesos`;
+            } else if (salsa === 'pesto') {
+                boxBolo.classList.add('hidden');
+                const pestoG = Math.round(equivPlatos * 50);
+                document.getElementById('res-salsa').textContent = `${pestoG} g`;
+                document.getElementById('lbl-salsa-desc').textContent = `Pesto de albahaca fresca`;
+            }
+        }
+
+        function getShareText() {
+            const equivPlatos = adultos + (ninos * 0.5);
+            const pasta = document.getElementById('res-pasta').textContent;
+            const pastaTipo = document.getElementById('lbl-pasta-tipo').textContent;
+            const salsa = document.getElementById('res-salsa').textContent;
+            const salsaDesc = document.getElementById('lbl-salsa-desc').textContent;
+            const queso = document.getElementById('res-queso').textContent;
+            const agua = document.getElementById('res-agua').textContent;
+
+            return `🍝 *LISTA DE INGREDIENTES PARA PASTAS* (${equivPlatos} porciones)\n\n` +
+                   `• ${pasta} de ${pastaTipo}\n` +
+                   `• Salsa: ${salsa} (${salsaDesc})\n` +
+                   `• ${queso} de queso rallado\n` +
+                   `• Cocción: ${agua} de agua + ${parseInt(agua)*10}g de sal gruesa\n\n` +
+                   `Calculado gratis en: https://sebiglesias.com.ar/pastas-caseras/`;
+        }
+
+        function shareWhatsApp() {
+            const text = encodeURIComponent(getShareText());
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        function copyList() {
+            navigator.clipboard.writeText(getShareText()).then(() => {
+                const btn = document.getElementById('btn-copy');
+                const old = btn.textContent;
+                btn.textContent = '¡Copiado! ✓';
+                setTimeout(() => btn.textContent = old, 2000);
+            });
+        }
+
+        // Init
+        calc();
+    </script>
+</body>
+</html>
